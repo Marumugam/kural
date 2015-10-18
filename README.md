@@ -2,7 +2,7 @@
 
 > Social networking for philosophers
 
-*focused discussions, love for truth, clean knowledge, everyone should be a philosopher, *
+*focused discussions, love for truth, clean knowledge, everyone should be a philosopher,*
 
 ## Phase 0 : Terminal App
 
