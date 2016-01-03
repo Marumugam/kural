@@ -1,1 +1,1 @@
-sudo npm install --global --save google
+cd kural/server && npm install --save google
