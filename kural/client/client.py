@@ -1,7 +1,9 @@
-import http.client
+#import http.client
+import httplib
 import json
 
-conn = http.client.HTTPConnection("10.0.0.4:8888")
+#conn = http.client.HTTPConnection("10.0.0.4:8888")
+conn = httplib.HTTPConnection("10.0.0.4:8888")
 
 headers = { 'Content-Type': 'application/json'}
 foo = {'text': 'nan oru muttalunga'}
