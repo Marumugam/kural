@@ -1,6 +1,21 @@
 var http = require("http");
 var body = []
 
+// stackexchange
+var stackexchange = require('stackexchange');
+
+var options = { version: 2.2 };
+var context = new stackexchange(options);
+
+var filter = {
+  key: 'P)GKng7s9bYCYlDfU6*H4Q((',
+  pagesize: 50,
+  tagged: 'node.js',
+  sort: 'activity',
+  order: 'asc'
+};
+// -------------------------- //
+
 // google handle
 var google = require("google")
 
@@ -18,7 +33,23 @@ http.createServer(function(request, response) {
 		console.log(">> Received from " + request.url + " : " + request_keyword)
 	
 		var response_links = ""
+
+		// Get all the questions (http://api.stackexchange.com/docs/questions)
+		context.questions.questions(filter, function(err, results){
+			if (err) throw err;
+
+			//console.log(results.items);
+			//console.log(results.has_more);
+
+			response.write(JSON.stringify(results.items))
+			//response.write(JSON.stringify(results.has_more))
+			//response.write("end of stuff")
+			response.end();
+
+		});
+
 		// we have the request to forward to google	
+		/*
 		google(request_keyword, function (err, next, links){
 			if (err) console.error(err)
 
@@ -48,7 +79,7 @@ http.createServer(function(request, response) {
 
 		}
 
-		})
+		})*/
 
 	})
 
