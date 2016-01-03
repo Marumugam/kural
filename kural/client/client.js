@@ -13,24 +13,23 @@ var loptions = {
     path : "/",
     method : "POST"};
 
-var readline = require('readline');
-var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-    terminal: false
+var resp = [];
+
+var request = http.request(options,function(response){
+    
+    response.on("data",function(chunk){
+      //console.log(data.toString());
+	resp.push(chunk)
+	}).on('end', function () {
+	    // now I can process the data
+	    response_string = Buffer.concat(resp).toString()
+	    console.log(response_string)
+	});
+    
 });
 
-var request = http.request(loptions,function(response){
-    response.on("data",function(data){
-	console.log(data.toString());
-    });
-});
 
-while(1) {
-    rl.on('line', function(line){
-	request.write(line);    
-	console.log(line)
-    });
-}
+line = "how the universe works!!";    
+request.write(line);    
 
 request.end();
