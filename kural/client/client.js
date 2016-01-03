@@ -15,6 +15,8 @@ var loptions = {
 
 var resp = [];
 
+console.log("******* " + process.argv[2] + "\n");
+
 var request = http.request(options,function(response){
     
     response.on("data",function(chunk){
@@ -28,8 +30,6 @@ var request = http.request(options,function(response){
     
 });
 
-
-line = "how the universe works!!";    
-request.write(line);    
+request.write(process.argv.slice(2, -1).join());    
 
 request.end();
