@@ -10,8 +10,6 @@ var resp = []
 
 var request = http.request(options,function(response){
 
-	
-
   response.on("data",function(chunk){
 		//console.log(data.toString());
 		resp.push(chunk)
