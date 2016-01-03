@@ -29,7 +29,9 @@ var request = http.request(loptions,function(response){
 while(1) {
     rl.on('line', function(line){
 	request.write(line);    
+	console.log(line)
     });
 }
+
 
 request.end();
