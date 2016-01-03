@@ -6,15 +6,30 @@ var options = {
     path : "/",
     method : "POST"};
 
-var request = http.request(options,function(response){
 
+var loptions = {
+    host : "127.0.0.1",
+    port : 8888,
+    path : "/",
+    method : "POST"};
+
+var readline = require('readline');
+var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+});
+
+var request = http.request(loptions,function(response){
     response.on("data",function(data){
 	console.log(data.toString());
     });
-
 });
 
-
-request.write("Some Request!");
+while(1) {
+    rl.on('line', function(line){
+	request.write(line);    
+    });
+}
 
 request.end();
